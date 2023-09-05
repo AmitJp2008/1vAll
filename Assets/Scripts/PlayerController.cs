@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class PlayerController : ControllableCharacter
 {
-    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private MyPlayerInput playerInput;
 
     private void OnEnable()
     {
