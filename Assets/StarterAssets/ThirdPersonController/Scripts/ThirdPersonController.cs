@@ -32,6 +32,7 @@ namespace StarterAssets
         [Tooltip("Aim Rotation Speed")]
         public float Sensitivity = 1.0f;
 
+        [SerializeField] private AudioClip ShotSound;
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
@@ -109,6 +110,7 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        private bool _rotateOnMove = true;
 
         private const float _threshold = 0.01f;
 
@@ -265,7 +267,10 @@ namespace StarterAssets
                     RotationSmoothTime);
 
                 // rotate to face input direction relative to camera position
-                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                if (_rotateOnMove) 
+                {
+                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                }
             }
 
 
@@ -377,6 +382,11 @@ namespace StarterAssets
         {
             Sensitivity = sensitivityValue;
         }
+        public void SetRotationOnMove(bool rotationOnMoveState) 
+        {
+            _rotateOnMove = rotationOnMoveState;
+        }
+
 
         private void OnFootstep(AnimationEvent animationEvent)
         {
@@ -389,7 +399,7 @@ namespace StarterAssets
                 }
             }
         }
-
+        
         private void OnLand(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)

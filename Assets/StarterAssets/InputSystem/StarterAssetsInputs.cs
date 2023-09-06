@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace StarterAssets
 {
-	public class StarterAssetsInputs : MonoBehaviour
+    public class StarterAssetsInputs : MonoBehaviour
 	{
 		[Header("Character Input Values")]
 		public Vector2 move;
@@ -13,8 +13,11 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool aim;
+		public bool shoot;
+		public bool weapon_1;
+		public bool weapon_2;
 
-        [Header("Movement Settings")]
+		[Header("Movement Settings")]
 		public bool analogMovement;
 
 		[Header("Mouse Cursor Settings")]
@@ -22,7 +25,7 @@ namespace StarterAssets
 		public bool cursorInputForLook = true;
 
 #if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}
@@ -39,7 +42,10 @@ namespace StarterAssets
 		{
 			JumpInput(value.isPressed);
 		}
-
+		public void OnShoot(InputValue value)
+		{
+			ShootInput(value.isPressed);
+		}
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
@@ -49,6 +55,10 @@ namespace StarterAssets
         {
             AimInput(value.isPressed);
         }
+		public void OnChangeWeapon_1(InputValue value) 
+		{
+			ChangeWeaponInput_1(value.isPressed);
+		}
 #endif
 
 
@@ -66,16 +76,22 @@ namespace StarterAssets
 		{
 			jump = newJumpState;
 		}
-
-		public void SprintInput(bool newSprintState)
+		public void ShootInput(bool newShootState)
 		{
+			shoot = newShootState;
+		}
+		public void SprintInput(bool newSprintState)
+		{		
 			sprint = newSprintState;
 		}
 		public void AimInput(bool newAimState) 
 		{
 			aim = newAimState;
 		}
-
+		public void ChangeWeaponInput_1(bool chosenWeaponState) 
+		{
+			weapon_1 = chosenWeaponState;
+		}
         private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
@@ -85,6 +101,5 @@ namespace StarterAssets
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
-	}
-	
+	}	
 }

@@ -6,5 +6,5 @@ using UnityEngine;
 [DefaultExecutionOrder(-50)]
 public class GamplayEvents : MonoSingelton<GamplayEvents>
 {
-    
+    public Action<Weapon> PlayerChangedWeapon;
 }
