@@ -14,10 +14,12 @@ public class PlayerWeaponSwapController : ThirdPersonActionsController
         if (StarterAssetsInputs.weapon_1) 
         {
             ChangeWeapon(0);
+            StarterAssetsInputs.weapon_2 = false;
         }
         if (StarterAssetsInputs.weapon_2)
         {
             ChangeWeapon(1);
+            StarterAssetsInputs.weapon_1 = false;
         }
     }
 
@@ -26,6 +28,7 @@ public class PlayerWeaponSwapController : ThirdPersonActionsController
         if (playerWeapons != null && playerWeapons[weaponSlot] != null) 
         {
             GamplayEvents.Instance.PlayerChangedWeapon?.Invoke(playerWeapons[weaponSlot]);
+            Debug.Log($"ChangeWeapon: player swap to {playerWeapons[weaponSlot].Name}");
         }
     }
 }

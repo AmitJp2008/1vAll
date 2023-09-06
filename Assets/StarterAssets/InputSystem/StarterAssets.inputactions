@@ -61,18 +61,18 @@
                 },
                 {
                     "name": "Weapon_1",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "36e3b2c6-f4b1-4bbd-9930-6eeeafae8863",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
                     "name": "Weapon_2",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "340b9d87-d5b7-4983-9493-31747dd2bc69",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

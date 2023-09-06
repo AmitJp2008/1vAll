@@ -57,12 +57,18 @@ namespace StarterAssets
         }
 		public void OnChangeWeapon_1(InputValue value) 
 		{
+			Debug.Log("1 pressed");
 			ChangeWeaponInput_1(value.isPressed);
+		}
+		public void OnChangeWeapon_2(InputValue value) 
+		{
+			Debug.Log("2 pressed");
+			ChangeWeaponInput_2(value.isPressed);
 		}
 #endif
 
 
-        public void MoveInput(Vector2 newMoveDirection)
+		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		} 
@@ -92,7 +98,12 @@ namespace StarterAssets
 		{
 			weapon_1 = chosenWeaponState;
 		}
-        private void OnApplicationFocus(bool hasFocus)
+		public void ChangeWeaponInput_2(bool chosenWeaponState)
+		{
+			weapon_2 = chosenWeaponState;
+		}
+		
+		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
 		}
