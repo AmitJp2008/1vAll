@@ -16,7 +16,6 @@ namespace StarterAssets
 		public bool shoot;
 		public bool weapon_1;
 		public bool weapon_2;
-
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -54,16 +53,14 @@ namespace StarterAssets
         public void OnAim(InputValue value)
         {
             AimInput(value.isPressed);
-        }
-		public void OnChangeWeapon_1(InputValue value) 
-		{
-			Debug.Log("1 pressed");
-			ChangeWeaponInput_1(value.isPressed);
 		}
-		public void OnChangeWeapon_2(InputValue value) 
+		public void OnWeapon_1(InputValue value) 
 		{
-			Debug.Log("2 pressed");
-			ChangeWeaponInput_2(value.isPressed);
+			ChangeWeaponSlotInput_1(value.isPressed);
+		}
+		public void OnWeapon_2(InputValue value) 
+		{
+			ChangeWeaponSlotInput_2(value.isPressed);
 		}
 #endif
 
@@ -94,15 +91,14 @@ namespace StarterAssets
 		{
 			aim = newAimState;
 		}
-		public void ChangeWeaponInput_1(bool chosenWeaponState) 
+		public void ChangeWeaponSlotInput_2(bool changeState) 
 		{
-			weapon_1 = chosenWeaponState;
+			weapon_2 = changeState;
 		}
-		public void ChangeWeaponInput_2(bool chosenWeaponState)
+		public void ChangeWeaponSlotInput_1(bool changeState)
 		{
-			weapon_2 = chosenWeaponState;
+			weapon_1 = changeState;
 		}
-		
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
