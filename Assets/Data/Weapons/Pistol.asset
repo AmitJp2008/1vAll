@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 3536672356017433551, guid: 3faa5bf82b4258e429d05f602b1c074f,
     type: 3}
-  weaponCrosshair: {fileID: 0}
-  weaponImage: {fileID: 0}
+  weaponModel: {fileID: 2580690637786341637, guid: 9bfe33c922fd9574aa88c2016770cb43,
+    type: 3}
+  weaponCrosshair: {fileID: 21300000, guid: f708c27d7f14ab14f9c898a83881d250, type: 3}
+  weaponImage: {fileID: 21300000, guid: e9fc2b883fa145445a5796fbcb98b22c, type: 3}
   ammunationAmount: 8
-  damagePerHit: 0
+  damagePerHit: 2
   shotSound: {fileID: 8300000, guid: 6dd31cf3a82e233418c8ac227d3e87a6, type: 3}
   shootFrequency: 3

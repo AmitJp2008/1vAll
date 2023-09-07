@@ -4,6 +4,7 @@
 public class Weapon : ScriptableObject
 {
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject weaponModel;
     [SerializeField] private Sprite weaponCrosshair;
     [SerializeField] private Sprite weaponImage;
     [SerializeField] private int ammunationAmount;
@@ -12,6 +13,7 @@ public class Weapon : ScriptableObject
     [SerializeField, Tooltip("if more then zero the weapon can be shot holding the shooting button")] private float shootFrequency;
 
     public GameObject Bullet => bulletPrefab;
+    public GameObject WeaponModel => weaponModel;
     public Sprite Crosshair => weaponCrosshair;
     public Sprite WeaponImage => weaponImage;
     public int AmmunationAmount => ammunationAmount;

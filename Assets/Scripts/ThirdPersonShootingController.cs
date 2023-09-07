@@ -12,12 +12,12 @@ public class ThirdPersonShootingController : ThirdPersonActionsController
 
     private void OnEnable()
     {
-        GamplayEvents.Instance.PlayerChangedWeapon += SetCurrentChosenWeapon;
+        GameplayEvents.Instance.PlayerChangedWeapon += SetCurrentChosenWeapon;
     }
 
     private void OnDisable()
     {
-        GamplayEvents.Instance.PlayerChangedWeapon -= SetCurrentChosenWeapon;
+        GameplayEvents.Instance.PlayerChangedWeapon -= SetCurrentChosenWeapon;
     }
 
     private void Update()
