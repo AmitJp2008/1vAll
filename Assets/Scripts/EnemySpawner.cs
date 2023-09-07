@@ -51,7 +51,7 @@ public class EnemySpawner : MonoBehaviour
 
             spawnPosition = new Vector3(x, floor.position.y, z);
 
-            if (!IsPointInsideSphere(new Vector3(x, 0, z), player.transform.position, minDistanceFromPlayer))
+            if (!GameplayHelper.IsPointInsideSphere(new Vector3(x, 0, z), player.transform.position, minDistanceFromPlayer))
             {
                 break;
             }
@@ -66,11 +66,7 @@ public class EnemySpawner : MonoBehaviour
         return spawnPosition;
     }
 
-    bool IsPointInsideSphere(Vector3 point, Vector3 sphereCenter, float radius)
-    {
-        float distance = Vector3.Distance(point, sphereCenter);
-        return distance <= radius;
-    }
+   
 
     private bool IsMinDistanceTooBig()
     {
