@@ -19,5 +19,6 @@ public class Weapon : ScriptableObject
     public int AmmunationAmount => ammunationAmount;
     public AudioClip ShotSound => shotSound;
     public float ShootFrequency => shootFrequency;
+    public float DamagePerHit => damagePerHit;
     public string Name => name;
 }

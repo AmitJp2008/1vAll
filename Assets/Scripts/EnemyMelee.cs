@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Search;
 using UnityEngine;
 
 public class EnemyMelee : EnemyBase
@@ -9,6 +7,7 @@ public class EnemyMelee : EnemyBase
     private float attackTimer = 0f;
     private float attackCooldown => 1f / EnemyData.AttackSpeed; // Calculate cooldown based on frequency
     bool targetInRadius = false;
+
     // Update is called once per frame
     void Update()
     {
@@ -42,8 +41,7 @@ public class EnemyMelee : EnemyBase
     }
     public override void Attack()
     {
-
-        //make attack sound
+        Debug.Log($"Enemy {gameObject.name} attacked player");
     }
 
     public override void Die()
@@ -54,12 +52,11 @@ public class EnemyMelee : EnemyBase
 
     public override void Move()
     {
-
         // Move towards the target
         Vector3 newPosition = Vector3.MoveTowards(transform.position, Target.position, EnemyData.MovementSpeed);
         transform.position = newPosition;
     }
-    public override void GotHit(int damageTaken)
+    public override void GotHit(float damageTaken)
     {
         CurrentHealth -= damageTaken;
         // play hit effect and sound

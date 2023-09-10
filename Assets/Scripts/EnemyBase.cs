@@ -6,8 +6,10 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
     private const float timeToSelfDestrcut = 2f;
     
     [SerializeField] private EnemyData enemyData;
+    [SerializeField] private GameObject enemyModel;
     private Transform target;
-    public int CurrentHealth;
+    public float CurrentHealth;
+
     public Transform Target => target;
     public EnemyData EnemyData => enemyData;
 
@@ -15,6 +17,13 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
     {
         CurrentHealth = EnemyData.Health;
         target = PlayerTransformGetter.Instance.Player;
+        gameObject.name = enemyData.EnemyName;
+        gameObject.tag = "Enemy";
+
+        if (enemyModel != null) 
+        {
+            enemyModel.tag = "Enemy";
+        }
     }
 
     public abstract void Attack();
@@ -25,7 +34,7 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
         Destroy(gameObject, timeToSelfDestrcut);
     }
 
-    public abstract void GotHit(int damageTaken);
+    public abstract void GotHit(float damageTaken);
 
     public abstract void Move();
 

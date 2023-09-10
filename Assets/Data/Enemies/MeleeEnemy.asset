@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74107b6d51b6f404f93af98816bb90bb, type: 3}
   m_Name: MeleeEnemy
   m_EditorClassIdentifier: 
+  enemyName: MeleeZ
   bloodVfx: {fileID: 0}
   hitSound: {fileID: 0}
   killPoints: 3
@@ -19,4 +20,4 @@ MonoBehaviour:
   damage: 3
   distanceOfAttack: 1.2
   attackSpeed: 1
-  movementSpeed: 0
+  movementSpeed: 0.05

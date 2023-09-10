@@ -10,7 +10,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float minDistanceFromPlayer; // Minimum distance from player
     [SerializeField] private GameObject debugEnemyObject;
 
+    EnemySpawnPointGenerator enemySpawnPointGenerator;
     private List<Transform> enemies = new List<Transform>();
+    private void Awake()
+    {
+        enemySpawnPointGenerator = new EnemySpawnPointGenerator(floor, floorWidth, floorLength, minDistanceFromPlayer);
+    }
     private void Start()
     {
         if (IsMinDistanceTooBig())
@@ -26,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (enemyToSpawn == null) enemyToSpawn = debugEnemyObject;
 
-        Vector3 spawnPosition = GenerateSpawnPosition();
+        Vector3 spawnPosition = enemySpawnPointGenerator.GenerateSpawnPosition(player.gameObject);
 
         // Make the enemy look at the player when instantiated
         Vector3 aimDir = (player.position - spawnPosition).normalized;
@@ -37,11 +42,33 @@ public class EnemySpawner : MonoBehaviour
         enemyObj.SetActive(true);
     }
 
-    private Vector3 GenerateSpawnPosition()
+    private bool IsMinDistanceTooBig()
     {
-        Vector3 spawnPosition = Vector3.zero;
+        return minDistanceFromPlayer > floorWidth || minDistanceFromPlayer > floorLength;
+    }
+}
 
-        int maxAttempts = 100;
+public class EnemySpawnPointGenerator
+{
+    private const int maxSpawnPointGenerationAttempts = 100;
+    private Transform floor; // Reference to the floor
+    private float floorWidth;
+    private float floorLength;
+    private float minDistanceFromTarget; // Minimum distance from player
+
+    public EnemySpawnPointGenerator(Transform floorRef, float floorWidth, float floorLenght, float minDistanceFromTarget) 
+    {
+        floor = floorRef;
+        this.floorWidth = floorWidth;
+        this.floorLength = floorLenght;
+        this.minDistanceFromTarget = minDistanceFromTarget;
+    }
+
+    public Vector3 GenerateSpawnPosition(GameObject player)
+    {
+        Vector3 spawnPosition;
+
+        int maxAttempts = maxSpawnPointGenerationAttempts;
         int attempts = 0;
 
         while (true)
@@ -51,7 +78,7 @@ public class EnemySpawner : MonoBehaviour
 
             spawnPosition = new Vector3(x, floor.position.y, z);
 
-            if (!GameplayHelper.IsPointInsideSphere(new Vector3(x, 0, z), player.transform.position, minDistanceFromPlayer))
+            if (!GameplayHelper.IsPointInsideSphere(new Vector3(x, 0, z), player.transform.position, minDistanceFromTarget))
             {
                 break;
             }
@@ -64,12 +91,5 @@ public class EnemySpawner : MonoBehaviour
         }
 
         return spawnPosition;
-    }
-
-   
-
-    private bool IsMinDistanceTooBig()
-    {
-        return minDistanceFromPlayer > floorWidth || minDistanceFromPlayer > floorLength;
     }
 }

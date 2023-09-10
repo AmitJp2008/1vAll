@@ -7,5 +7,6 @@ using UnityEngine;
 public class GameplayEvents : MonoSingelton<GameplayEvents>
 {
     public Action<Weapon> PlayerChangedWeapon;
+    public Action<GameObject, float> BulletHitEnemy;
     public Action<GameObject> EnemyDied;
 }

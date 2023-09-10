@@ -3,7 +3,7 @@
     void Attack();
     void Move();
     void Die();
-    void GotHit(int damageTaken);
+    void GotHit(float damageTaken);
     bool TargetInRadius();
 }
 

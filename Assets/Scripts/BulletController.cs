@@ -9,6 +9,7 @@ public class BulletController : MonoBehaviour
     
     [SerializeField] private float bulletSpeed = 20f;
     private Rigidbody bulletRigidbody;
+    private float bulletDamage;
     private void Awake()
     {
         bulletRigidbody = GetComponent<Rigidbody>();
@@ -25,8 +26,15 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void SetBulletDamage(float damageOnHit) 
+    {
+        bulletDamage = damageOnHit;
+    }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "Enemy")
+            GameplayEvents.Instance.BulletHitEnemy?.Invoke(other.gameObject, bulletDamage);
+
         Destroy(gameObject); 
     }
 }

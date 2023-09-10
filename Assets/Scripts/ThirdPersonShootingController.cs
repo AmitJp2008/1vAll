@@ -49,10 +49,20 @@ public class ThirdPersonShootingController : ThirdPersonActionsController
         if (chosenWeapon == null) return;
 
         Vector3 aimDir = (thirdPersonAimAnimationController.MouseWorldPosition - bulletSpawnPosition.position).normalized;
-        Instantiate(chosenWeapon.Bullet, bulletSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        SetFiredBullet(Instantiate(chosenWeapon.Bullet, bulletSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up)));       
         PlayShotSound();
     }
 
+    private void SetFiredBullet(GameObject bulletObj) 
+    {
+        var bulletComponent = bulletObj.GetComponent<BulletController>();
+        if (bulletComponent != null)
+        {
+            bulletComponent.SetBulletDamage(chosenWeapon.DamagePerHit);
+        }
+        else
+            Debug.LogError($"Shoot: there is no bullet component on bullet gameobject named {chosenWeapon.Bullet}");
+    }
     private void PlayShotSound()
     {
         if (chosenWeapon.ShotSound == null) return;
