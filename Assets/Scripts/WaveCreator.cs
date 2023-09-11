@@ -11,26 +11,24 @@ public class WaveCreator : MonoBehaviour
 
     private bool gameStarted = false;
     private int waveCounter = 0;
-
+    private int currentAmountOfEnemies = 0;
     private void OnEnable()
     {
-        GameplayEvents.Instance.GameStateChanged += HandleGameStateChanged;
+        GameplayEvents.Instance.EnemyDied += EndWave;
     }
     private void OnDisable()
     {
-        GameplayEvents.Instance.GameStateChanged -= HandleGameStateChanged;
+        GameplayEvents.Instance.EnemyDied -= EndWave;
     }
 
     private void Start()
     {
         //Testing
-        HandleGameStateChanged(GameState.Active);
+        CreateWave();
     }
 
-    private void HandleGameStateChanged(GameState state)
+    private void CreateWave()
     {
-        if (state != GameState.Active) return;
-
         if (!gameStarted)
         {
             StartWave();
@@ -64,8 +62,9 @@ public class WaveCreator : MonoBehaviour
 
         gameStarted = true;
         int currentEnemyIndex = 0;
-        int amountOfEnemiesToSpawn = waveData.StartingEnemies + (waveCounter * waveData.AmountOfIncreasedEnemiesPerWave);
-        while (currentEnemyIndex < amountOfEnemiesToSpawn)
+        currentAmountOfEnemies = waveData.StartingEnemies + (waveCounter * waveData.AmountOfIncreasedEnemiesPerWave);
+         
+        while (currentEnemyIndex < currentAmountOfEnemies)
         {
             int rand = Random.Range(0, possibleEnemies.Length);
             var enemyBase = spawner.SpawnEnemy(possibleEnemies[rand].EnemyPrefab);
@@ -73,7 +72,7 @@ public class WaveCreator : MonoBehaviour
             currentEnemyIndex++;
         }
 
-        GameplayEvents.Instance.WaveCreated?.Invoke(amountOfEnemiesToSpawn);
+        GameplayEvents.Instance.WaveCreated?.Invoke(currentAmountOfEnemies);
     }
 
     private void SetWaveEnemy(EnemyBase enemy, EnemyData enemyData) 
@@ -81,9 +80,13 @@ public class WaveCreator : MonoBehaviour
         enemy.SetEnemyHealth(enemyData.Health + (enemyData.Health * waveData.HealthIncrementAmount));
         enemy.SetEnemyDamage(enemyData.Damage + (enemyData.Damage * waveData.AttackPowerIncrementAmount));
     }
+
+    private void EndWave(EnemyBase _) 
+    {
+        currentAmountOfEnemies--;
+        if (currentAmountOfEnemies == 0)
+        {
+            CreateWave();
+        }
+    }
 }   
-public enum GameState
-{
-    Idle,
-    Active
-}
