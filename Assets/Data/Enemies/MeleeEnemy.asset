@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: MeleeEnemy
   m_EditorClassIdentifier: 
   enemyName: MeleeZ
+  enemyPrefab: {fileID: 7546144235384220380, guid: 9019837e3f24ee94bada4adc2d5c3ac9,
+    type: 3}
   bloodVfx: {fileID: 0}
   hitSound: {fileID: 0}
   killPoints: 3

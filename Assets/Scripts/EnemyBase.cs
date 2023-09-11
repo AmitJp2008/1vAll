@@ -9,13 +9,15 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
     [SerializeField] private GameObject enemyModel;
     private Transform target;
     public float CurrentHealth;
+    public float CurrentDamage;
 
     public Transform Target => target;
     public EnemyData EnemyData => enemyData;
 
     private void Awake()
     {
-        CurrentHealth = EnemyData.Health;
+        SetEnemyHealth(enemyData.Health);
+        SetEnemyDamage(enemyData.Damage);
         target = PlayerTransformGetter.Instance.Player;
         gameObject.name = enemyData.EnemyName;
         gameObject.tag = "Enemy";
@@ -37,6 +39,15 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
     public abstract void GotHit(float damageTaken);
 
     public abstract void Move();
+    
+    public void SetEnemyHealth(float health) 
+    {
+        CurrentHealth = health;
+    }
+    public void SetEnemyDamage(float damage)
+    {
+        CurrentDamage = damage;
+    }
 
     public virtual bool TargetInRadius() 
     {

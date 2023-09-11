@@ -4,31 +4,29 @@ using UnityEngine;
 
 public class DamageApplyer : MonoBehaviour
 {
-    private Transform player;
-    private float overallDamageAgainstPlayer = 0;
-    private float overallDamageAgainstEnemies = 0;
-
     private void OnEnable()
     {
-        GameplayEvents.Instance.BulletHitEnemy += DamageEnemy;
+        GameplayEvents.Instance.TargetGotHit += DamageTarget;
     }
     private void OnDisable()
     {
-        GameplayEvents.Instance.BulletHitEnemy -= DamageEnemy;
-
+        GameplayEvents.Instance.TargetGotHit -= DamageTarget;
     }
 
-    private void DamageEnemy(GameObject enemyObj, float damageToApply)
+    private void DamageTarget(GameObject targetObj, float damageToApply)
     {
-        if (enemyObj == null) return;
+        if (targetObj == null) return;
 
-        EnemyBase enemy = enemyObj.transform.parent.gameObject.GetComponent<EnemyBase>();
-        if (enemy != null)
+        IHitable hitable = targetObj.GetComponent<IHitable>();
+        if(hitable == null) hitable = targetObj.transform.parent.GetComponent<IHitable>();
+
+        if (hitable != null)
         {
-            enemy.GotHit(damageToApply);
-            overallDamageAgainstEnemies += damageToApply;
+            hitable.GotHit(damageToApply);
         }
-        else
-            Debug.LogError($"DamageEnemy: Enemy {enemyObj} has no enemy base class on him - error");
+        else 
+        {
+            Debug.Log($"DamageTarget: No IHitable on {targetObj} - error");
+        }
     }
 }

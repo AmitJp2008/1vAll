@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6517972513187312193}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,6 +146,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: d8eafe6efe619f541a80d97f40700af0, type: 2}
   enemyModel: {fileID: 6517972513187312199}
   CurrentHealth: 0
+  CurrentDamage: 0
 --- !u!54 &7546144235384220383
 Rigidbody:
   m_ObjectHideFlags: 0

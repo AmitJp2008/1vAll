@@ -1,9 +1,14 @@
-﻿public interface IEnemy 
+﻿public interface IEnemy : IHitable
 {
     void Attack();
     void Move();
-    void Die();
-    void GotHit(float damageTaken);
     bool TargetInRadius();
+}
+
+public interface IHitable 
+{
+    void GotHit(float damageTaken);
+    void Die();
+
 }
 

@@ -55,7 +55,7 @@ public class ThirdPersonShootingController : ThirdPersonActionsController
 
     private void SetFiredBullet(GameObject bulletObj) 
     {
-        var bulletComponent = bulletObj.GetComponent<BulletController>();
+        var bulletComponent = bulletObj.GetComponent<BulletPlayer>();
         if (bulletComponent != null)
         {
             bulletComponent.SetBulletDamage(chosenWeapon.DamagePerHit);

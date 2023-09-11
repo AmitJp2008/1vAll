@@ -9,7 +9,7 @@ public class EnemyMelee : EnemyBase
     bool targetInRadius = false;
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         attackTimer += Time.deltaTime;
         if (targetInRadius) 
@@ -25,7 +25,7 @@ public class EnemyMelee : EnemyBase
             Die();
         }
     }
-    private void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         Vector3 aimDir = (Target.position - transform.position);
         aimDir.y = 0; // Ignore height difference for rotation
@@ -41,12 +41,12 @@ public class EnemyMelee : EnemyBase
     }
     public override void Attack()
     {
-        Debug.Log($"Enemy {gameObject.name} attacked player");
+        GameplayEvents.Instance.TargetGotHit?.Invoke(Target.gameObject, EnemyData.Damage);
     }
 
     public override void Die()
     {
-        GameplayEvents.Instance.EnemyDied?.Invoke(gameObject);
+        GameplayEvents.Instance.EnemyDied?.Invoke(this);
         base.Die();
     }
 

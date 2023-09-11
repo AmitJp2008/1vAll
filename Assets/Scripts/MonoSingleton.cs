@@ -3,7 +3,7 @@
 /// This class is responsible for creating mono singleton classes
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class MonoSingelton<T> : MonoBehaviour where T : class 
+public class MonoSingleton<T> : MonoBehaviour where T : class 
 {
     public static T Instance;
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3536672356017433544}
   - component: {fileID: -2425374584876646669}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: BulletPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,10 +73,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3536672356017433551}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ee97a12d08622d4d8a21f69d4640890, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b0842b8d8d496649abbbdd743aa5e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 30
+  effectiveTag: Enemy
+  bulletSpeed: 20
 --- !u!1 &3536672356796450935
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@
 public class EnemyData : ScriptableObject 
 {
     [SerializeField] private string enemyName;
+    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject bloodVfx;
     [SerializeField] private AudioClip hitSound;
     [SerializeField] private int killPoints;
@@ -13,6 +14,7 @@ public class EnemyData : ScriptableObject
     [SerializeField] private float attackSpeed;
     [SerializeField] private float movementSpeed;
 
+    public GameObject EnemyPrefab => enemyPrefab;
     public GameObject BloodVfx => bloodVfx;
     public AudioClip HitSound => hitSound;
     public int KillPoints => killPoints;
