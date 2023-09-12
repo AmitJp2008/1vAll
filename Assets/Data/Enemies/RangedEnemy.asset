@@ -21,6 +21,6 @@ MonoBehaviour:
   killPoints: 5
   health: 8
   damage: 2
-  distanceOfAttack: 8
+  distanceOfAttack: 10
   attackSpeed: 2
-  movementSpeed: 0.075
+  movementSpeed: 0.1

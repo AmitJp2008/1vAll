@@ -32,7 +32,6 @@ namespace StarterAssets
         [Tooltip("Aim Rotation Speed")]
         public float Sensitivity = 1.0f;
 
-        [SerializeField] private AudioClip ShotSound;
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
