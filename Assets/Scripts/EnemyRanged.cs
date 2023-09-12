@@ -5,6 +5,12 @@ public class EnemyRanged : EnemyMelee
 {
     [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private GameObject enemyBulletPrefab;
+
+    private Transform aimPoint;
+    private void Start()
+    {
+        aimPoint = PlayerTransformGetter.Instance.PlayerAimPoint;
+    }
     public override void Attack()
     {
         ShootAtTarget();
@@ -12,9 +18,12 @@ public class EnemyRanged : EnemyMelee
 
     private void ShootAtTarget() 
     {
-        //Vector3 directionToTarget = Target.position - bulletSpawnPoint.position;
-        //Quaternion aimDir = Quaternion.LookRotation(directionToTarget);
-        //Instantiate(enemyBulletPrefab, bulletSpawnPoint.position, aimDir);
+        Vector3 directionToTarget = aimPoint.position - bulletSpawnPoint.position;
+        Quaternion aimDir = Quaternion.LookRotation(directionToTarget);
+        if (Instantiate(enemyBulletPrefab, bulletSpawnPoint.position, aimDir).TryGetComponent(out BulletControllerBase bullet)) 
+        {
+            bullet.SetBulletDamage(EnemyData.Damage);
+        }
     }
 }
 
