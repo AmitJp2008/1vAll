@@ -15,7 +15,8 @@ MonoBehaviour:
   enemyName: RangedZ
   enemyPrefab: {fileID: 7546144235384220380, guid: 0ea74294273996b4c86d12f9a7de8c58,
     type: 3}
-  bloodVfx: {fileID: 0}
+  bloodVfx: {fileID: 2684790587919643763, guid: 1fd338011f1a31c42a34959ed89ea4bd,
+    type: 3}
   hitSound: {fileID: 0}
   killPoints: 5
   health: 8

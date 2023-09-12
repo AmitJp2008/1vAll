@@ -15,4 +15,5 @@ public class GameplayEvents : MonoSingleton<GameplayEvents>
     public Action<float, float> PlayerGotHit;
     public Action<float> PlayerCollectedHealth;
     public Action<float, float> PlayerHealed;
+    public Action<Collider, Vector3> BulletCollidedWithTarget;
 }

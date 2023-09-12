@@ -43,6 +43,7 @@ public class BulletControllerBase : MonoBehaviour
         if (other.gameObject.tag == effectiveTag) 
         {
             GameplayEvents.Instance.TargetGotHit?.Invoke(other.gameObject, bulletDamage);
+            GameplayEvents.Instance.BulletCollidedWithTarget?.Invoke(other, transform.position);
         }
 
         Destroy(gameObject);

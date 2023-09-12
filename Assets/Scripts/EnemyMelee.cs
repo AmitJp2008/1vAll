@@ -59,7 +59,6 @@ public class EnemyMelee : EnemyBase
     public override void GotHit(float damageTaken)
     {
         CurrentHealth -= damageTaken;
-        // play hit effect and sound
     }
 }
 
