@@ -15,24 +15,26 @@ public class Player : MonoBehaviour, IHitable
     private void OnEnable()
     {
         GameplayEvents.Instance.ArmorActivityStateChanged += ChangeArmorState;
-        GameplayEvents.Instance.PlayerCollectedHealth += RegenerateHealth;
+        GameplayEvents.Instance.PlayerCollectedHealth += Heal;
     }
     private void OnDisable()
     {
         GameplayEvents.Instance.ArmorActivityStateChanged -= ChangeArmorState;
-        GameplayEvents.Instance.PlayerCollectedHealth -= RegenerateHealth;
+        GameplayEvents.Instance.PlayerCollectedHealth -= Heal;
     }
 
     private void ChangeArmorState(bool state)
     {
         armorOn = state;
     }
-    private void RegenerateHealth(float hpUpAmount) 
+    private void Heal(float hpUpAmount) 
     {
         currentHealth += hpUpAmount;
         
         if (currentHealth >= startingHealth)
             currentHealth = startingHealth;
+
+        GameplayEvents.Instance.PlayerHealed?.Invoke(startingHealth, currentHealth);
 
     }
     public void GotHit(float damageTaken) 

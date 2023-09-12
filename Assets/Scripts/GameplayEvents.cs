@@ -14,4 +14,5 @@ public class GameplayEvents : MonoSingleton<GameplayEvents>
     public Action PlayerDied;
     public Action<float, float> PlayerGotHit;
     public Action<float> PlayerCollectedHealth;
+    public Action<float, float> PlayerHealed;
 }
