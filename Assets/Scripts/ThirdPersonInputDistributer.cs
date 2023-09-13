@@ -7,7 +7,7 @@ namespace StarterAssets
 		[SerializeField] StarterAssetsInputs starterAssetsInputs;
 		[SerializeField] ThirdPersonActionsController[] thirdPersonActionsControllers;
 		
-		private void Start()
+		private void Awake()
 		{
 			InjectInputSystem(thirdPersonActionsControllers, starterAssetsInputs);
 		}

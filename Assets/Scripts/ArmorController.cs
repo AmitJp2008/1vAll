@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class ArmorController : ThirdPersonActionsController
 {
-    [SerializeField] private Player player;
     [SerializeField] private ArmorConfigurationData armorConfigurationData;
     [SerializeField] ArmorUI armorUI;
 
+    private bool armorUiExist = false;
     private bool armorReadyToUse = true;
     private void Start()
     {
-        SetArmorUi();
+        armorUiExist = SetArmorUi();
     }
     private void Update()
     {
+        if (!armorUiExist) return;
+
         if (StarterAssetsInputs.armor) 
         {
             StarterAssetsInputs.armor = false;
@@ -27,10 +29,11 @@ public class ArmorController : ThirdPersonActionsController
         }
     }
 
-    private void SetArmorUi()
+    private bool SetArmorUi()
     {
-        if (armorConfigurationData == null) return;
+        if (armorConfigurationData == null || armorUI == null) return false;
         armorUI.SetArmorConfigurationData(armorConfigurationData);
+        return true;
     }
 
     private IEnumerator EnableArmor()
