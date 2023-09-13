@@ -53,7 +53,6 @@ public class Player : MonoBehaviour, IHitable
 
     public void Die() 
     {
-        ArmorConfigurationData
         Debug.Log("Player died");
         GameplayEvents.Instance.PlayerDied?.Invoke();
     }
