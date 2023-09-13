@@ -8,6 +8,7 @@ public class Player : MonoBehaviour, IHitable
     private bool armorOn;
     private float currentHealth;
 
+    public bool ArmorOn => armorOn;
     private void Awake()
     {
         currentHealth = startingHealth;
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour, IHitable
 
     public void Die() 
     {
+        ArmorConfigurationData
         Debug.Log("Player died");
         GameplayEvents.Instance.PlayerDied?.Invoke();
     }

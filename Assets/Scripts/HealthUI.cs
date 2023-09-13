@@ -10,7 +10,6 @@ public class HealthUI : MonoBehaviour
     [SerializeField] private Image healthBar;
     [SerializeField] private HealthHitEffect healthHitEffect;
 
-    private float lastHealthAmount;
     private void OnEnable()
     {
         GameplayEvents.Instance.PlayerGotHit += UpdateHealth;

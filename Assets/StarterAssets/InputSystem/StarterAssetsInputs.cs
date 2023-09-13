@@ -16,6 +16,7 @@ namespace StarterAssets
 		public bool shoot;
 		public bool weapon_1;
 		public bool weapon_2;
+		public bool armor;
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -62,6 +63,10 @@ namespace StarterAssets
 		{
 			ChangeWeaponSlotInput_2(value.isPressed);
 		}
+		public void OnArmorUp(InputValue value) 
+		{
+			ChangeArmorState(value.isPressed);
+		}
 #endif
 
 
@@ -98,6 +103,10 @@ namespace StarterAssets
 		public void ChangeWeaponSlotInput_1(bool changeState)
 		{
 			weapon_1 = changeState;
+		}
+		public void ChangeArmorState(bool armorState) 
+		{
+			armor = armorState;
 		}
 		private void OnApplicationFocus(bool hasFocus)
 		{
